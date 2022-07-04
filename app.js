@@ -1,24 +1,27 @@
 const express = require('express');
 
-const app =express();
+const app = express();
 
-app.use((req, res, next) => {
-console.log('Requete reçue !');
-next();
-});
-
-app.use((req, res, next) => {
-    res.status(201);
-    next();
-});
-
-app.use((req, res, next) => {
-    res.json({ message: 'Votre réquete a bien été reçue !'});
-    next();
-});
-
-app.use((req, res) => {
-    console.log('Réponse envoyé avec succes !');
+app.use('/api/stuff', (req, res, next) =>{
+    const stuff = [
+        {
+            _id: 'oeihfzeoi',
+            title: 'Mon premier objet',
+            description: 'Les infos de mon premier objet',
+            imageUrl: '',
+            price: 4900,
+            userId: 'qsomihvqios',
+        },
+        {
+            _id: 'oeihfzeoihi',
+            title: 'Mon deuxième objet',
+            description: 'Les infos de mon deuxième objet',
+            imageUrl: '',
+            price: 2900,
+            userId: 'qsomihvqios',
+        },
+    ];
+    res.status(200).json(stuff);
 });
 
 module.exports = app;
